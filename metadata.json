@@ -1,0 +1,8 @@
+{
+  "name": "Ameterasu A.I.",
+  "description": "An interactive AI assistant whose personality and visual representation are dynamically driven by a background physics simulation.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "prompt": ""
+}
