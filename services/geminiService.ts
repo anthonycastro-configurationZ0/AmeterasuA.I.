@@ -6,11 +6,17 @@ import type { Content, GenerationConfig } from '@google/genai';
 let ai: GoogleGenAI | undefined;
 
 try {
-    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (apiKey) {
+        ai = new GoogleGenAI({ apiKey });
+    } else {
+        throw new Error('API key not found in environment');
+    }
 } catch (e) {
     console.error(
-        "Failed to initialize GoogleGenAI. This is expected in a browser environment " +
-        "if process.env.API_KEY is not available. AI functionality will be disabled."
+        "Failed to initialize GoogleGenAI. API key is missing or invalid. " +
+        "Please ensure VITE_GEMINI_API_KEY is set in your .env.local file. " +
+        "AI functionality will be disabled."
     );
 }
 
